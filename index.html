@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Martijn Planken — Builder Portfolio</title>
+<style>
+  :root {
+    --paper: #f7f9f8;
+    --surface: #eef2f1;
+    --ink: #1e2b2e;
+    --muted: #5c6d70;
+    --line: #ccd6d5;
+    --accent: #14606f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #131b1d;
+      --surface: #1b2528;
+      --ink: #e4ebea;
+      --muted: #93a5a7;
+      --line: #2e3c3f;
+      --accent: #4fb3c5;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font: 16px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif;
+    margin: 0;
+    padding: 3.5rem 1.25rem 5rem;
+  }
+  main { max-width: 44rem; margin: 0 auto; }
+  h1, h2, h3 {
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    line-height: 1.2;
+  }
+  h1 { font-size: 2rem; margin: 0 0 .3rem; }
+  h2 { font-size: 1.3rem; margin: 2.5rem 0 .5rem; }
+  .lede { color: var(--muted); font-size: 1.05rem; margin: 0; }
+  .contact { color: var(--muted); font-size: .85rem; border-bottom: 1px solid var(--line); padding-bottom: 1.5rem; margin-top: 1rem; }
+  .contact a { color: var(--accent); }
+  p { margin: .75rem 0; }
+  .case {
+    border: 1px solid var(--line);
+    padding: 1.25rem 1.5rem;
+    margin: 1.25rem 0;
+  }
+  .case h3 { margin: 0 0 .5rem; font-size: 1.1rem; }
+  .case .scope {
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    font-size: .68rem;
+    font-weight: 650;
+    color: var(--accent);
+    display: block;
+    margin-bottom: .4rem;
+  }
+  .case ul { margin: .6rem 0 0; padding-left: 1.2rem; }
+  .case li { margin: .35rem 0; font-size: .95rem; }
+  .stack {
+    margin-top: .9rem;
+    padding-top: .75rem;
+    border-top: 1px solid var(--line);
+    font-size: .85rem;
+    color: var(--muted);
+  }
+  .note { color: var(--muted); font-size: .85rem; }
+  .foot { color: var(--muted); font-size: .85rem; border-top: 1px solid var(--line); margin-top: 3rem; padding-top: 1rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Martijn Planken</h1>
+  <p class="lede">I design and operate production software end-to-end — architecture, build, security, deployment — working AI-assisted, on a foundation of 25 years in behavior-change program design.</p>
+  <p class="contact">The Netherlands · <a href="mailto:martijn.planken@gmail.com">martijn.planken@gmail.com</a> · Dutch (native), English (fluent)</p>
+
+  <h2>Selected work</h2>
+  <p class="note">Both systems are proprietary client platforms, so the repositories are private; architecture walk-throughs are available on request.</p>
+
+  <div class="case">
+    <span class="scope">Production · 735 retail locations · in daily use</span>
+    <h3>Retail compliance platform for a national supermarket chain</h3>
+    <p>A portal where franchise holders of a national Dutch supermarket chain track their compliance measurements, order additional audits, and book on-site training workshops.</p>
+    <ul>
+      <li>Role-based access for four user types, with enterprise SSO (OAuth2/PKCE) and SCIM user provisioning against the client's identity platform.</li>
+      <li>Excel-driven bulk imports (≈735 rows × 46 columns) with preview, per-cell validation and server-side re-validation; cell <em>color</em> carries meaning and is parsed as data.</li>
+      <li>Automated compliance scoring with threshold rules, alert emails on failing scores, and a self-service workshop scheduler that auto-assigns trainers by region, weekly pattern and workload.</li>
+      <li>A second measurement stream via public token-based forms and a webhook integration (HMAC-verified, idempotent) with evidence-file handling, stored encrypted.</li>
+      <li>Security hardening: middleware auth with header-spoofing protection, per-action role checks, ownership checks on mutations, rate limiting on public endpoints.</li>
+    </ul>
+    <div class="stack">TypeScript · Next.js · PostgreSQL · Prisma · Better Auth · Docker · Caddy · Resend · SheetJS · vitest</div>
+  </div>
+
+  <div class="case">
+    <span class="scope">Production · field-research operations</span>
+    <h3>Field-research data platform</h3>
+    <p>An operational system for planning, executing and processing on-site research visits: order intake, day-team planning, a separate portal for field workers, and an immutable measurement chain from visit to reported result.</p>
+    <ul>
+      <li>Monorepo with a typed API and a web app; measurements are append-only by design so results stay auditable.</li>
+      <li>Order-code chain connecting client orders to visits and results, with staging and production environments on the same host.</li>
+      <li>Operated end-to-end: deployments, database backups with restore runbooks, secrets management, monitoring.</li>
+    </ul>
+    <div class="stack">TypeScript · Hono · Next.js · Drizzle ORM · PostgreSQL · pnpm monorepo · Docker</div>
+  </div>
+
+  <div class="case">
+    <span class="scope">Production · three public marketing sites</span>
+    <h3>AI-built and AI-maintained websites</h3>
+    <p>Three public marketing sites built and maintained with AI-assisted development, running as standalone Node builds behind a reverse proxy — including transactional email and a product configurator.</p>
+    <div class="stack">Next.js · Node.js · PM2 · Caddy</div>
+  </div>
+
+  <h2>How I work</h2>
+  <p>I build with AI coding agents as the executing developers and myself as architect, reviewer and operator. That combination is why a one-person team can deliver and run systems of this size: rigorous specification, structured review of everything the agents produce, and conventional engineering discipline — tests, migrations, runbooks, backups — around it.</p>
+  <p>Before building software I spent 25 years designing national behavior-change programs in Dutch public health, which is where the evaluation habits come from: define the criteria first, then measure against them.</p>
+</main>
+</body>
+</html>
