@@ -85,7 +85,7 @@
     <h3>Retail compliance platform for a national supermarket chain</h3>
     <p>A portal where franchise holders of a national Dutch supermarket chain track their compliance measurements, order additional audits, and book on-site training workshops.</p>
     <ul>
-      <li>Role-based access for four user types, with enterprise SSO (OAuth2/PKCE) and SCIM user provisioning against the client's identity platform.</li>
+      <li>Role-based access for four user types, connected to the chain's existing internal corporate network: enterprise SSO via Okta (OAuth2/PKCE) and SCIM 2.0 automated user provisioning — store staff sign in with their corporate accounts, and joiners/movers/leavers sync automatically from the client's identity platform.</li>
       <li>Excel-driven bulk imports (≈735 rows × 46 columns) with preview, per-cell validation and server-side re-validation; cell <em>color</em> carries meaning and is parsed as data.</li>
       <li>Automated compliance scoring with threshold rules, alert emails on failing scores, and a self-service workshop scheduler that auto-assigns trainers by region, weekly pattern and workload.</li>
       <li>A second measurement stream via public token-based forms and a webhook integration (HMAC-verified, idempotent) with evidence-file handling, stored encrypted.</li>
